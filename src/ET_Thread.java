@@ -48,7 +48,7 @@ public class ET_Thread extends Thread // Threadind des opérations de la couche t
 	{
 		for (EntreeDeTable entree : ProcessusET.getTable())
 		{
-			if (entree.getNumeroDeConnexion() == numConnexion)
+			if (entree.getIdentifiantExtremiteConnexion() == numConnexion)
 			{
 				ProcessusET.getTable().remove(entree);
 				break;
@@ -69,7 +69,7 @@ public class ET_Thread extends Thread // Threadind des opérations de la couche t
 			numConnexion = rand.nextInt(254);
 			for (EntreeDeTable entree : ProcessusET.getTable())
 			{
-				if (entree.getNumeroDeConnexion() == numConnexion)
+				if (entree.getIdentifiantExtremiteConnexion() == numConnexion)
 				{
 					entreeLibre = false;
 					break;

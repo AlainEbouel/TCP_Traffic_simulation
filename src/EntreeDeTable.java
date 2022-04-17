@@ -1,12 +1,12 @@
 
 public class EntreeDeTable
 {
-	int numeroDeConnexion;
+	int identifiantExtremite;
 	EtatDeConnexion etatDeConnexion;
 
 	public EntreeDeTable(int numeroDeConnexion, EtatDeConnexion etatDeConnexion)
 	{
-		this.numeroDeConnexion = numeroDeConnexion;
+		this.identifiantExtremite = numeroDeConnexion;
 		this.etatDeConnexion = etatDeConnexion;
 	}
 
@@ -20,9 +20,9 @@ public class EntreeDeTable
 		this.etatDeConnexion = etatDeConnexion;
 	}
 
-	public int getNumeroDeConnexion()
+	public int getIdentifiantExtremiteConnexion()
 	{
-		return numeroDeConnexion;
+		return identifiantExtremite;
 	}
 
 }
