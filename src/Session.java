@@ -20,7 +20,6 @@ public class Session
 		ET = new ProcessusET();
 		ER = new ProcessusER();
 
-		start();
 	}
 
 	// Démarrage de la boucle de lecture des données d'applications

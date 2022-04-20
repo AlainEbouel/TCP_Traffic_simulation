@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ProcessusER
@@ -10,7 +11,7 @@ public class ProcessusER
 		sauvegardeInfos = new ArrayList<SauvegardeInfos>();
 	}
 
-	public Primitive DemandeDeConnexion(int numIdentifiant, int addrSource, int addrDestination)
+	public Primitive DemandeDeConnexion(int numIdentifiant, int addrSource, int addrDestination) throws IOException
 	{
 		if (estMultipleDe27(addrSource))
 		{
@@ -19,9 +20,19 @@ public class ProcessusER
 		{
 			PaquetStandard paqueAppel = preparationPaquetAppel(addrSource, addrDestination, count++);
 			int numConnexion = count++;
+
+			// sauvegarde info necessaire à cette connexion
 			sauvegardeInfos.add(new SauvegardeInfos(numConnexion, addrSource, addrDestination,
 					EtatDeConnexion.attenteDeConfirmation, numIdentifiant));
-			return N_ConnectInd(addrSource, addrDestination);
+
+			Primitive reponse = LiaisonDeDonnees.appel(paqueAppel);// Transmission du paquet d'appel a la liaison
+													// de données
+
+			if (reponse == null || reponse == Primitive.N_DISCONNECT_req)
+				return Primitive.N_DISCONNECT_ind;
+			else
+				return Primitive.N_CONNECT_conf;
+
 		}
 	}
 
@@ -42,4 +53,54 @@ public class ProcessusER
 		/// **********À coder*******************
 		return false;
 	}
+
+	public PaquetAcquittement preparationPaquetDeDonnees(String data, Primitive nDataReq, int numConnexion,
+			int addrSource) throws IOException
+	{
+		if (data.length() > 128)
+			return traitementGrosPaquet(numConnexion, data, addrSource);
+		else
+		{
+			String typePaquet = formatTypeDePaquet(0);
+
+			return LiaisonDeDonnees.envoisPaquetDeDonnees(new PaquetDeDonnees(numConnexion, typePaquet, data),
+					addrSource);
+		}
+
+	}
+
+	// Traitement des grosses données(>128o)
+	private PaquetAcquittement traitementGrosPaquet(int numConnexion, String data, int addrSource) throws IOException
+	{
+		byte[] dataBytes = data.getBytes();
+		int nbrPaquet = dataBytes.length % 128 == 0 ? dataBytes.length / 128 : dataBytes.length / 128 + 1;
+		int index = 0;
+		while (nbrPaquet > 1)
+		{
+
+			String typePaquet = formatTypeDePaquet(1);
+			String dataPartiel = data.substring(index, index + 127);
+			LiaisonDeDonnees.envoisPaquetDeDonnees(new PaquetDeDonnees(numConnexion, typePaquet, dataPartiel),
+					addrSource);
+			index += 128;
+			nbrPaquet--;
+		}
+
+		String typePaquet = formatTypeDePaquet(0);
+		String dataPartiel = data.substring(index, dataBytes.length);
+		LiaisonDeDonnees.envoisPaquetDeDonnees(new PaquetDeDonnees(numConnexion, typePaquet, dataPartiel),
+				addrSource);
+
+		return null;
+	}
+
+	private String formatTypeDePaquet(int bitM)
+	{
+		String ps = String.format("%3s", Integer.toBinaryString(ProcessusET.getPs()).replace(' ', '0'));
+		String pr = String.format("%3s", Integer.toBinaryString(ProcessusET.getPr()).replace(' ', '0'));
+
+		return pr + bitM + ps + 0;
+
+	}
+
 }

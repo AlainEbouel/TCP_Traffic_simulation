@@ -16,20 +16,27 @@ public class ET_Thread extends Thread // Threadind des opérations de la couche t
 		this.ER = ER;
 		this.data = data;
 		S_ecr = new File("S_ecr.txt");
-
 	}
 
 	@Override
 	public void run()
 	{
 		int numConnexion = gestionTableConnexion();
-		Primitive reponse = ER.DemandeDeConnexion(numConnexion, addrRandom(), 'B');
+		Primitive reponse = null;
+		int addrSource = generationAddrSource();
+		try
+		{
+			reponse = ER.DemandeDeConnexion(numConnexion, addrSource, 'B');
+		} catch (IOException e1)
+		{
+			e1.printStackTrace();
+		}
 
 		if (reponse == Primitive.N_DISCONNECT_ind)
 		{
 			liberationDesRessources(numConnexion);
 			try
-			{
+			{// ecriture dans S_ecr du resultat de la demande de connexion
 				ecrireDansS_ecr(reponse.toString());
 			} catch (IOException e)
 			{
@@ -38,6 +45,19 @@ public class ET_Thread extends Thread // Threadind des opérations de la couche t
 
 		} else
 		{
+			getEntreeDeTable(numConnexion).setEtatDeConnexion(EtatDeConnexion.connexionEtablie);
+
+			try
+			{
+				// ecriture dans S_ecr du resultat de l'acquittement, s'il y a lieu
+				PaquetAcquittement acquittement = ER.preparationPaquetDeDonnees(data, Primitive.N_DATA_req,
+						numConnexion, addrSource);
+				if (acquittement != null)
+					ecrireDansS_ecr(acquittement.toString());
+			} catch (IOException e)
+			{
+				e.printStackTrace();
+			}
 
 		}
 
@@ -51,6 +71,7 @@ public class ET_Thread extends Thread // Threadind des opérations de la couche t
 			if (entree.getIdentifiantExtremiteConnexion() == numConnexion)
 			{
 				ProcessusET.getTable().remove(entree);
+				data = null;
 				break;
 			}
 		}
@@ -83,7 +104,7 @@ public class ET_Thread extends Thread // Threadind des opérations de la couche t
 	}
 
 	// Génération aléatoire d'addresse source
-	private int addrRandom()
+	private int generationAddrSource()
 	{
 		Random rand = new Random();
 		return rand.nextInt(249);
@@ -97,4 +118,14 @@ public class ET_Thread extends Thread // Threadind des opérations de la couche t
 		file.write(reponse.concat("\n").getBytes());
 		file.close();
 	}
+
+	// Retroune une entree de table en fonction du numero de connexion
+	private EntreeDeTable getEntreeDeTable(int numConnexion)
+	{
+		for (EntreeDeTable entree : ProcessusET.getTable())
+			if (entree.getIdentifiantExtremiteConnexion() == numConnexion)
+				return entree;
+		return null;
+	}
+
 }

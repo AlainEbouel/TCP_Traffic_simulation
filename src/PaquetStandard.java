@@ -34,4 +34,12 @@ public class PaquetStandard // appel, confirmation, libération,
 		return addresseDest;
 	}
 
+	@Override
+	public String toString()
+	{
+		return "[NUMERO_CONNEXION = " + NUMERO_CONNEXION + ", typeDePaquet = "
+				+ String.format("%8s", Integer.toBinaryString(typeDePaquet)).replace(' ', '0')
+				+ ", addresseSource = " + addresseSource + " , addresseDest = " + addresseDest + "]";
+	}
+
 }

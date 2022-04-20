@@ -2,10 +2,10 @@
 public class PaquetDeDonnees
 {
 	private int numeroDeConnexion;
-	private int typeDePaquet;
-	private int donnees;
+	private String typeDePaquet;
+	private String donnees;
 
-	public PaquetDeDonnees(int numeroDeConnexion, int typeDePaquet, int donnees)
+	public PaquetDeDonnees(int numeroDeConnexion, String typeDePaquet, String donnees)
 	{
 		this.numeroDeConnexion = numeroDeConnexion;
 		this.typeDePaquet = typeDePaquet;
@@ -17,12 +17,12 @@ public class PaquetDeDonnees
 		return numeroDeConnexion;
 	}
 
-	public int getTypeDePaquet()
+	public String getTypeDePaquet()
 	{
 		return typeDePaquet;
 	}
 
-	public int getDonnees()
+	public String getDonnees()
 	{
 		return donnees;
 	}
