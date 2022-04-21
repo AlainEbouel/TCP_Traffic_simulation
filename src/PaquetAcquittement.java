@@ -25,8 +25,6 @@ public class PaquetAcquittement
 	{
 		String typeAcquitement = typeDePaquet.substring(3).equals("00001") ? "Acquitement Positif"
 				: "Acquitement Négatif";
-		System.out.println(typeDePaquet.substring(3));
-		System.out.println(typeDePaquet.substring(3).equals("00001"));
 		return typeAcquitement + " :[numeroDeConnexion=" + numeroDeConnexion + ", typeDePaquet=" + typeDePaquet
 				+ "]";
 	}
