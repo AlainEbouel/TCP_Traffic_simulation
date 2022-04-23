@@ -11,31 +11,37 @@ public class LiaisonDeDonnees
 	private static String grosData = "";
 
 	// Methode pour les paquet d'appels//La liason de données écrira dans L_ecr
-	public static Primitive appel(PaquetStandard paqueAppel) throws IOException
+	public static IPaquet appel(PaquetAppel paqueAppel) throws IOException
 	{
-		String ecriture = new String("Paquet d'appel : ").concat(paqueAppel.toString());
+		String ecriture = paqueAppel.toString();
 
 		ecrireDansFichiers(L_ecr, ecriture);
 
-		return reponseDemandeDeConnexion(paqueAppel.getAddresseSource());
+		return reponseDemandeDeConnexion(paqueAppel.getAddresseSource(), paqueAppel);
 	}
 
-	private static Primitive reponseDemandeDeConnexion(int nbr)
+	private static IPaquet reponseDemandeDeConnexion(int nbr, PaquetAppel paqueAppel)
 	{
+		int numConexion = paqueAppel.getNUMERO_CONNEXION();
+		int addrSource = paqueAppel.getAddresseSource();
+		int addrDest = paqueAppel.getAddresseDest();
+
 		if (estMultipleDe19(nbr))
 		{
 			return null;
 		}
 		if (estMultipleDe13(nbr))
 		{
-			return Primitive.N_DISCONNECT_req;
+			System.out.println("lib");
+			return new PaquetIndLiberation(numConexion, addrSource, addrDest, 0b00000001);
 		}
-
-		return Primitive.N_CONNECT_resp;
+		System.out.println("conf");
+		return new PaquetComEtablie(numConexion, addrSource, addrDest);
 	}
 
 	private static boolean estMultipleDe13(int nbr)
 	{
+		System.out.println("nbr = " + nbr);
 		if (nbr != 0)
 			return nbr % 13 == 0;
 		else
@@ -123,9 +129,9 @@ public class LiaisonDeDonnees
 
 	}
 
-	public static void envoisPaquetLiberation(PaquetStandard paquetLib) throws IOException
+	public static void envoisPaquetLiberation(IPaquet paquetLib) throws IOException
 	{
-		ecrireDansFichiers(L_lec, paquetLib.toString());
+		ecrireDansFichiers(L_ecr, paquetLib.toString());
 	}
 
 }

@@ -5,47 +5,43 @@ public class ProcessusER
 {
 	private ArrayList<SauvegardeInfos> sauvegardeInfos;
 	private static int count = 0;// génères les numéros de connexions
-	private static PaquetDeDonnees SecondPaquet;
 
 	public ProcessusER()
 	{
 		sauvegardeInfos = new ArrayList<SauvegardeInfos>();
 	}
 
-	public Primitive DemandeDeConnexion(int numIdentifiant, int addrSource, int addrDestination) throws IOException
+	public IPaquet DemandeDeConnexion(int numIdentifiant, int addrSource, int addrDestination) throws IOException
 	{
+		int numConnexion;
+
 		if (estMultipleDe27(addrSource))
 		{
-			return Primitive.N_DISCONNECT_ind;
+			return new PaquetIndLiberation(-1, addrSource, addrDestination, 0b00000010);
 		} else
 		{
-			PaquetStandard paqueAppel = preparationPaquetAppel(addrSource, addrDestination, count++);
-			int numConnexion = count++;
+			numConnexion = count++;
+			PaquetAppel paquetAppel = preparationPaquetAppel(addrSource, addrDestination, numConnexion);
 
 			// sauvegarde info necessaire à cette connexion
 			sauvegardeInfos.add(new SauvegardeInfos(numConnexion, addrSource, addrDestination,
 					EtatDeConnexion.attenteDeConfirmation, numIdentifiant));
 
-			Primitive reponse = LiaisonDeDonnees.appel(paqueAppel);// Transmission du paquet d'appel a la liaison
-													// de données
-
-			if (reponse == null || reponse == Primitive.N_DISCONNECT_req)
-				return Primitive.N_DISCONNECT_ind;
-			else
-				return Primitive.N_CONNECT_conf;
+			return LiaisonDeDonnees.appel(paquetAppel);// Transmission du paquet d'appel a la liaison
+											// de données
 		}
 	}
 
-	private PaquetStandard preparationPaquetAppel(int addrSource, int addrDestination, int numeroConnexion)
+	// Préparation de paquet d'appel
+	private PaquetAppel preparationPaquetAppel(int addrSource, int addrDestination, int numeroConnexion)
 	{
-		int typePaquet = 0b00001011;
-		return new PaquetStandard(numeroConnexion, typePaquet, addrSource, addrDestination);
+		return new PaquetAppel(numeroConnexion, addrSource, addrDestination);
 	}
 
-	public Primitive N_ConnectInd(int addrSource, int addrDestination)
-	{
-		return null;
-	}
+//	public Primitive N_ConnectInd(int addrSource, int addrDestination)
+//	{
+//		return null;
+//	}
 
 	boolean estMultipleDe27(int numeroDemande)
 	{
@@ -108,8 +104,7 @@ public class ProcessusER
 		int addrSource = getAddrSource(idConnexion);
 		int addrDest = getAdrrDest(idConnexion);
 		int numConnexion = getNumConnexion(idConnexion);
-		int typePaquet = 0b00010011;
-		PaquetStandard paquetLib = new PaquetStandard(numConnexion, typePaquet, addrSource, addrDest);
+		PaquetDemandeLib paquetLib = new PaquetDemandeLib(numConnexion, addrSource, addrDest);
 		LiaisonDeDonnees.envoisPaquetLiberation(paquetLib);
 
 	}

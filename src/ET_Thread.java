@@ -22,7 +22,7 @@ public class ET_Thread extends Thread // Threadind des opérations de la couche t
 	@Override
 	public void run()
 	{
-		Primitive reponse = null;
+		IPaquet reponse = null;
 		int addrSource = generationAddrSource();
 		PaquetAcquittement resultEnvois;
 
@@ -38,7 +38,7 @@ public class ET_Thread extends Thread // Threadind des opérations de la couche t
 				e1.printStackTrace();
 			}
 
-			if (reponse == Primitive.N_DISCONNECT_ind)
+			if (reponse.getPrimitive() == Primitive.N_DISCONNECT_ind)
 				liberationDesRessources(idConnexion);
 
 			else

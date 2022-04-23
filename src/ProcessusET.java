@@ -25,7 +25,6 @@ public class ProcessusET
 
 			table.add(entree = new EntreeDeTable(idConnexion, EtatDeConnexion.attenteDeConfirmation,
 					idApplication));
-			System.out.println("etat = " + entree.getEtatDeConnexion());
 		}
 
 		ET_Thread Et_thread;
