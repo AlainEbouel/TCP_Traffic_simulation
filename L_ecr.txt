@@ -1,9 +1,9 @@
-Paquet d'appel : [NUMERO_CONNEXION = 0, typeDePaquet = 00001011, addresseSource = 195 , addresseDest = 66]
-Paquet d'appel : [NUMERO_CONNEXION = 2, typeDePaquet = 00001011, addresseSource = 188 , addresseDest = 66]
+Paquet d'appel : [NUMERO_CONNEXION = 0, typeDePaquet = 00001011, addresseSource = 3 , addresseDest = 66]
+Bonjour les amis.
+Paquet d'appel : [NUMERO_CONNEXION = 2, typeDePaquet = 00001011, addresseSource = 230 , addresseDest = 66]
 « Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. 
-Paquet d'appel : [NUMERO_CONNEXION = 4, typeDePaquet = 00001011, addresseSource = 145 , addresseDest = 66]
 bonjour les amis
-Paquet d'appel : [NUMERO_CONNEXION = 6, typeDePaquet = 00001011, addresseSource = 189 , addresseDest = 66]
+Paquet d'appel : [NUMERO_CONNEXION = 4, typeDePaquet = 00001011, addresseSource = 54 , addresseDest = 66]
 L’utilisateur distant B, ou le fournisseur, peuvent refuser d’établir la connexion (manque de ressources, mauvais fonction
 ement local, ou autre raison). Les figures 2 et 3illustrent un refus d’établissement de connexion de la part de l’utilisat
 ur, respectivementdu fournisseur.
@@ -11,8 +11,6 @@ Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, do
 Le transfert de données est un service non confirmé.
 Est-ce que tout le monde se porte bien?
 La libération de connexion est un service non confirmé.
- Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonum
-y molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat
 Je viendrais vous voir bientôt si je trouve un peu de temps. 
 Il y a donc deux primitives associées à ce service. La libération peut intervenir sur demande de l’un des deux utilisateur
  du service de réseau (Figure 5), ou bien sur demande du fournisseur de service (Figure 6).

@@ -27,4 +27,14 @@ public class PaquetDeDonnees
 		return donnees;
 	}
 
+	public void setData(String grosData)
+	{
+		donnees = new String(grosData);
+	}
+
+	public int getPr()
+	{
+		return Integer.parseInt(typeDePaquet.substring(0, 3));
+	}
+
 }

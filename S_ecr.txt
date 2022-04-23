@@ -1,1 +1,3 @@
-N_DISCONNECT_ind
+N_CONNECT_conf
+N_CONNECT_conf
+N_CONNECT_conf

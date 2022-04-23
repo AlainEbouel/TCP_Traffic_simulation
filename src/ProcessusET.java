@@ -1,12 +1,13 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ProcessusET
 {
 	private static ArrayList<EntreeDeTable> table = new ArrayList<>();
-	private static int ps = 0, pr = 0;
+	private static int ps = -1, pr = -1;
 	private static int countIndentifiant = 0;
 
-	public void traitement(ProcessusER ER, String data)
+	public void traitement(ProcessusER ER, String data) throws IOException
 	{
 		EntreeDeTable entree;
 		int idApplication;
@@ -27,28 +28,34 @@ public class ProcessusET
 			System.out.println("etat = " + entree.getEtatDeConnexion());
 		}
 
-		ET_Thread Et_thread = new ET_Thread(ER, data.substring(4), idConnexion);
+		ET_Thread Et_thread;
 
-		Et_thread.run();
+		if (data.charAt(4) == '0')
+		{
+			Et_thread = new ET_Thread(ER, data.substring(5), idConnexion);
+			Et_thread.run();
+		} else
+			ER.liberation(idConnexion, Primitive.N_DISCONNECT_req);
 
 	}
 
-	public static int getPs()
+	public static String getPs()
 	{
-		return ps;
+		return String.format("%3s", Integer.toBinaryString(ps)).replace(' ', '0');
 	}
 
-	public static int getPr()
+	public static String getPr()
 	{
-		return pr;
+		incrementePr();
+		return String.format("%3s", Integer.toBinaryString(pr)).replace(' ', '0');
 	}
 
-	public void IncrementePs()
+	private static void incrementePr()
 	{
-		if (ps == 7)
-			ps = 0;
+		if (pr == 7)
+			pr = 0;
 		else
-			ProcessusET.ps += 1;
+			ProcessusET.pr += 1;
 	}
 
 	public static ArrayList<EntreeDeTable> getTable()
@@ -70,6 +77,11 @@ public class ProcessusET
 			if (entree.getNumApplication() == Integer.parseInt(idApplication))
 				return entree;
 		return null;
+	}
+
+	public void liberation()
+	{
+
 	}
 
 }

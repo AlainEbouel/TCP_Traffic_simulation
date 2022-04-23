@@ -23,7 +23,7 @@ public class Session
 	}
 
 	// Démarrage de la boucle de lecture des données d'applications
-	public void start() throws InterruptedException
+	public void start() throws InterruptedException, IOException
 	{
 		Scanner scan = new Scanner(S_lec);
 		String data;
@@ -34,13 +34,12 @@ public class Session
 			ET.traitement(ER, data);
 		}
 		scan.close();
+		// ET.traitement(ER, "");
+
 	}
 
 	public void lecture() throws IOException
 	{
-
-//		file.write(s1.getBytes());
-//		file.write(s2.getBytes());
 
 	}
 

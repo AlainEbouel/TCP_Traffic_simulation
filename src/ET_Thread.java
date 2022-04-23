@@ -22,32 +22,24 @@ public class ET_Thread extends Thread // Threadind des opérations de la couche t
 	@Override
 	public void run()
 	{
-
 		Primitive reponse = null;
 		int addrSource = generationAddrSource();
+		PaquetAcquittement resultEnvois;
 
 		if (ProcessusET.getEntreeDeTable(idConnexion).getEtatDeConnexion() == EtatDeConnexion.attenteDeConfirmation)
 		{
 			try
 			{
 				reponse = ER.DemandeDeConnexion(idConnexion, addrSource, 'B');
+				// ecriture dans S_ecr du resultat de la demande de connexion
+				ecrireDansS_ecr(reponse.toString());
 			} catch (IOException e1)
 			{
 				e1.printStackTrace();
 			}
 
 			if (reponse == Primitive.N_DISCONNECT_ind)
-			{
 				liberationDesRessources(idConnexion);
-				try
-				{
-					// ecriture dans S_ecr du resultat de la demande de connexion
-					ecrireDansS_ecr(reponse.toString());
-				} catch (IOException e)
-				{
-					e.printStackTrace();
-				}
-			}
 
 			else
 			{
@@ -55,7 +47,9 @@ public class ET_Thread extends Thread // Threadind des opérations de la couche t
 
 				try
 				{
-					ER.preparationPaquetDeDonnees(data, Primitive.N_DATA_req, idConnexion, addrSource);
+					resultEnvois = ER.preparationPaquetDeDonnees(data, Primitive.N_DATA_req, idConnexion,
+							addrSource);
+
 				} catch (IOException e)
 				{
 					e.printStackTrace();
@@ -73,7 +67,6 @@ public class ET_Thread extends Thread // Threadind des opérations de la couche t
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	// Libération des ressouces
@@ -89,33 +82,6 @@ public class ET_Thread extends Thread // Threadind des opérations de la couche t
 			}
 		}
 	}
-
-//	// Génération d'un numéro de connexion(Retourne un numero de connexion)
-//	private int gestionTableConnexion()
-//	{
-//		Random rand = new Random();
-//		boolean entreeLibre = false;
-//		int numConnexion = -1;
-//
-//		while (!entreeLibre)
-//		{
-//			entreeLibre = true;
-//			numConnexion = rand.nextInt(254);
-//			for (EntreeDeTable entree : ProcessusET.getTable())
-//			{
-//				if (entree.getIdentifiantExtremiteConnexion() == numConnexion)
-//				{
-//					entreeLibre = false;
-//					break;
-//				}
-//			}
-//
-//		}
-//
-//		// ProcessusET.getTable().add(new EntreeDeTable(numConnexion,
-//		// EtatDeConnexion.attenteDeConfirmation));
-//		return numConnexion;
-//	}
 
 	// Génération aléatoire d'addresse source
 	private int generationAddrSource()

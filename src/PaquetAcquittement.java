@@ -20,6 +20,13 @@ public class PaquetAcquittement
 		return typeDePaquet;
 	}
 
+	public int getPr()
+	{
+		System.out.println(typeDePaquet);
+		return 0;
+		// return Integer.parseInt(typeDePaquet.substring(0, 3));
+	}
+
 	@Override
 	public String toString()
 	{
