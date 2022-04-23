@@ -18,9 +18,16 @@ public class MainClass
 		S_ecr.createNewFile();
 		String data = "1";
 		// System.out.println(Integer.parseInt(data.substring(0, 3)));
+		int i = 0;
 
-		Session session = new Session();
-		session.start();
+		// while (i < 30)
+		{
+			Session session = new Session();
+			session.start();
+
+			System.out.println(i);
+
+		}
 //		String ps = String.format("%3s", Integer.toBinaryString(3)).replace(' ', '0');
 //		String g = String.format("%3s", data).replace(' ', '0');
 //		System.out.println("test = " + g);

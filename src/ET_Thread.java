@@ -32,16 +32,18 @@ public class ET_Thread extends Thread // Threadind des opérations de la couche t
 			{
 				reponse = ER.DemandeDeConnexion(idConnexion, addrSource, 'B');
 				// ecriture dans S_ecr du resultat de la demande de connexion
-				ecrireDansS_ecr(reponse.toString());
+				if (reponse != null)
+					ecrireDansS_ecr(reponse.toString());
+
 			} catch (IOException e1)
 			{
 				e1.printStackTrace();
 			}
 
-			if (reponse.getPrimitive() == Primitive.N_DISCONNECT_ind)
+			if (reponse != null && reponse.getPrimitive() == Primitive.N_DISCONNECT_ind)
 				liberationDesRessources(idConnexion);
 
-			else
+			else if (reponse != null && reponse.getPrimitive() == Primitive.N_CONNECT_resp)
 			{
 				ProcessusET.getEntreeDeTable(idConnexion).setEtatDeConnexion(EtatDeConnexion.connexionEtablie);
 

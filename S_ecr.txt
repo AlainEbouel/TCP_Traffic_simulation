@@ -1,4 +1,3 @@
-Paquet de Communication ?tablie [NUMERO_CONNEXION=0, typeDePaquet=15, addresseSource=33, addresseDest=66, primitive=N_CONNECT_resp]
-Paquet d'indication de liberation :[NUMERO_CONNEXION=1, typeDePaquet=19, addresseSource=221, addresseDest=66, Raison : 1]
-Paquet de Communication ?tablie [NUMERO_CONNEXION=2, typeDePaquet=15, addresseSource=128, addresseDest=66, primitive=N_CONNECT_resp]
-Paquet de Communication ?tablie [NUMERO_CONNEXION=3, typeDePaquet=15, addresseSource=204, addresseDest=66, primitive=N_CONNECT_resp]
+Paquet de Communication ?tablie [NUMERO_CONNEXION=0, typeDePaquet=15, addresseSource=6, addresseDest=66, primitive=N_CONNECT_resp]
+Paquet de Communication ?tablie [NUMERO_CONNEXION=1, typeDePaquet=15, addresseSource=161, addresseDest=66, primitive=N_CONNECT_resp]
+Paquet de Communication ?tablie [NUMERO_CONNEXION=2, typeDePaquet=15, addresseSource=230, addresseDest=66, primitive=N_CONNECT_resp]

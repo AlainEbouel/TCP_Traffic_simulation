@@ -28,20 +28,21 @@ public class LiaisonDeDonnees
 
 		if (estMultipleDe19(nbr))
 		{
+			System.out.println("multiple de 19");
 			return null;
 		}
 		if (estMultipleDe13(nbr))
 		{
-			System.out.println("lib");
+			System.out.println("multiple de 13");
 			return new PaquetIndLiberation(numConexion, addrSource, addrDest, 0b00000001);
 		}
-		System.out.println("conf");
+
 		return new PaquetComEtablie(numConexion, addrSource, addrDest);
 	}
 
 	private static boolean estMultipleDe13(int nbr)
 	{
-		System.out.println("nbr = " + nbr);
+		// System.out.println("nbr = " + nbr);
 		if (nbr != 0)
 			return nbr % 13 == 0;
 		else

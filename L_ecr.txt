@@ -1,12 +1,12 @@
-PaquetAppel [NUMERO_CONNEXION=0, typeDePaquet=11, addresseSource=33, addresseDest=66, primitive=N_CONNECT_req]
+PaquetAppel [NUMERO_CONNEXION=0, typeDePaquet=11, addresseSource=6, addresseDest=66, primitive=N_CONNECT_req]
 Bonjour les amis.
-PaquetAppel [NUMERO_CONNEXION=1, typeDePaquet=11, addresseSource=221, addresseDest=66, primitive=N_CONNECT_req]
+PaquetAppel [NUMERO_CONNEXION=1, typeDePaquet=11, addresseSource=161, addresseDest=66, primitive=N_CONNECT_req]
+« Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. 
 bonjour les amis
-PaquetAppel [NUMERO_CONNEXION=2, typeDePaquet=11, addresseSource=128, addresseDest=66, primitive=N_CONNECT_req]
+PaquetAppel [NUMERO_CONNEXION=2, typeDePaquet=11, addresseSource=230, addresseDest=66, primitive=N_CONNECT_req]
 L’utilisateur distant B, ou le fournisseur, peuvent refuser d’établir la connexion (manque de ressources, mauvais fonction
 ement local, ou autre raison). Les figures 2 et 3illustrent un refus d’établissement de connexion de la part de l’utilisat
 ur, respectivementdu fournisseur.
-PaquetAppel [NUMERO_CONNEXION=3, typeDePaquet=11, addresseSource=204, addresseDest=66, primitive=N_CONNECT_req]
 Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
 Le transfert de données est un service non confirmé.
 Est-ce que tout le monde se porte bien?
@@ -23,9 +23,9 @@ Comme vous le savez je suis très sollicité en ce moment, mais je ferai de mon 
  Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libe
 o pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede.
 J'ai contacté nos amis et ils seront du voyage.
-******PAQUET DE DEMANDE DE LIB?RATION*****==>[NUMERO_CONNEXION=0, typeDePaquet=19, addresseSource=33, addresseDest=66, primitive=N_DISCONNECT_ind]
+******PAQUET DE DEMANDE DE LIB?RATION*****==>[NUMERO_CONNEXION=0, typeDePaquet=19, addresseSource=6, addresseDest=66, primitive=N_DISCONNECT_ind]
 Si le paquet d’acquittement n’arrive pas (expiration d’un temporisateur) ou si c’est un paquet d’acquittement négati
 , réémettre le paquetconcerné.
-******PAQUET DE DEMANDE DE LIB?RATION*****==>[NUMERO_CONNEXION=2, typeDePaquet=19, addresseSource=128, addresseDest=66, primitive=N_DISCONNECT_ind]
+******PAQUET DE DEMANDE DE LIB?RATION*****==>[NUMERO_CONNEXION=2, typeDePaquet=19, addresseSource=230, addresseDest=66, primitive=N_DISCONNECT_ind]
 Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit.
-******PAQUET DE DEMANDE DE LIB?RATION*****==>[NUMERO_CONNEXION=3, typeDePaquet=19, addresseSource=204, addresseDest=66, primitive=N_DISCONNECT_ind]
+******PAQUET DE DEMANDE DE LIB?RATION*****==>[NUMERO_CONNEXION=1, typeDePaquet=19, addresseSource=161, addresseDest=66, primitive=N_DISCONNECT_ind]
