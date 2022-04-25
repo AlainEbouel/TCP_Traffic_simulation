@@ -28,9 +28,16 @@ public class PaquetIndLiberation implements IPaquet
 		return primitive;
 	}
 
+	// Obtention de la chaine binaire du type de paquet
 	private String typePaquetBinaryDigits()
 	{
 		return String.format("%8s", Integer.toBinaryString(typeDePaquet)).replace(' ', '0');
+	}
+
+	// Obtention de la chaine binaire de "raison"
+	private String raisonBinaryDigits()
+	{
+		return String.format("%8s", Integer.toBinaryString(raison)).replace(' ', '0');
 	}
 
 	@Override
@@ -38,7 +45,7 @@ public class PaquetIndLiberation implements IPaquet
 	{
 		return "Paquet d'indication de liberation :[NUMERO_CONNEXION=" + NUMERO_CONNEXION + ", typeDePaquet="
 				+ typePaquetBinaryDigits() + ", addresseSource=" + addresseSource + ", addresseDest="
-				+ addresseDest + ", Raison : " + raison + "]";
+				+ addresseDest + ", Raison : " + raisonBinaryDigits() + "]";
 	}
 
 }

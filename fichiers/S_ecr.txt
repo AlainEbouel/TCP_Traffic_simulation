@@ -1,0 +1,4 @@
+Paquet de Communication etablie [NUMERO_CONNEXION=0, typeDePaquet=00001111, addresseSource=206, addresseDest=66, primitive=N_CONNECT_resp]
+Paquet d'indication de liberation :[NUMERO_CONNEXION=1, typeDePaquet=00010011, addresseSource=117, addresseDest=66, Raison : 00000001]
+Paquet de Communication etablie [NUMERO_CONNEXION=2, typeDePaquet=00001111, addresseSource=54, addresseDest=66, primitive=N_CONNECT_resp]
+Paquet de Communication etablie [NUMERO_CONNEXION=3, typeDePaquet=00001111, addresseSource=248, addresseDest=66, primitive=N_CONNECT_resp]

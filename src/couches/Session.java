@@ -1,10 +1,8 @@
 package couches;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
-
-import couches.ProcessusER;
-import couches.ProcessusET;
 
 public class Session
 {
@@ -15,7 +13,7 @@ public class Session
 
 	public Session() throws IOException, InterruptedException
 	{
-		S_lec = new FileReader("S_lec.txt");
+		S_lec = new FileReader("fichiers/S_lec.txt");
 		ET = new ProcessusET();
 		ER = new ProcessusER();
 	}

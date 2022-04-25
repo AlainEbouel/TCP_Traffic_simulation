@@ -1,4 +1,5 @@
 package couches;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -6,9 +7,9 @@ public class MainClass // Démarrage du programme
 {
 	public static void main(String[] args) throws IOException, InterruptedException
 	{
-		File L_lec = new File("L_lec.txt");
-		File L_ecr = new File("L_ecr.txt");
-		File S_ecr = new File("S_ecr.txt");
+		File L_lec = new File("fichiers/L_lec.txt");
+		File L_ecr = new File("fichiers/L_ecr.txt");
+		File S_ecr = new File("fichiers/S_ecr.txt");
 
 		L_lec.delete();
 		L_lec.createNewFile();

@@ -1,4 +1,5 @@
 package couches;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -55,16 +56,29 @@ public class ProcessusER // Couche Reseau
 			int addrSource) throws IOException
 	{
 		PaquetAcquittement resultEnvois;
+		PaquetDeDonnees paquetDonnees;
 
 		if (data.length() > 128)
 			return traitementGrosPaquet(numConnexion, data, addrSource);
 		else
 		{
 			String typePaquet = formatTypeDePaquet(0);
+			paquetDonnees = new PaquetDeDonnees(numConnexion, typePaquet, data);
 
-			return resultEnvois = LiaisonDeDonnees
-					.envoisPaquetDeDonnees(new PaquetDeDonnees(numConnexion, typePaquet, data), addrSource);
+			resultEnvois = LiaisonDeDonnees.envoisPaquetDeDonnees(paquetDonnees, addrSource);
+
+			fenetreAnticipation(resultEnvois, paquetDonnees, addrSource);// pour gérer les acquittements
+
+			return resultEnvois;
 		}
+
+	}
+
+	private void fenetreAnticipation(PaquetAcquittement resultEnvois, PaquetDeDonnees paquetDonnees, int addrSource)
+			throws IOException
+	{
+		if (resultEnvois == null || resultEnvois.getTypeDePaquet().substring(3) == "01001")
+			LiaisonDeDonnees.retransmissionDonnées(paquetDonnees, addrSource);
 
 	}
 

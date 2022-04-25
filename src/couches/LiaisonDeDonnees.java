@@ -1,4 +1,5 @@
 package couches;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -13,8 +14,8 @@ import paquets.PaquetIndLiberation;
 
 public class LiaisonDeDonnees // Couche liaison de données
 {
-	private static File L_ecr = new File("L_ecr.txt");
-	private static File L_lec = new File("L_lec.txt");
+	private static File L_ecr = new File("fichiers/L_ecr.txt");
+	private static File L_lec = new File("fichiers/L_lec.txt");
 	private static boolean grosPaquet;
 	private static String grosData = "";
 
@@ -99,6 +100,13 @@ public class LiaisonDeDonnees // Couche liaison de données
 		ecrireDansFichiers(L_lec, pAcquittement.toString());
 		return pAcquittement;
 
+	}
+
+	// reception de données retransmis(après acquittement négatif)
+	public static PaquetAcquittement retransmissionDonnées(PaquetDeDonnees paquetDeDonnees, int addrSource)
+			throws IOException
+	{
+		return envoisPaquetDeDonnees(paquetDeDonnees, addrSource);
 	}
 
 	// Réception de demandes de libération

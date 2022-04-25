@@ -1,4 +1,5 @@
 package couches;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class ET_Thread extends Thread // Threadind des opérations de la couche t
 		this.ER = ER;
 		this.data = data;
 		this.idConnexion = idConnexion;
-		S_ecr = new File("S_ecr.txt");
+		S_ecr = new File("fichiers/S_ecr.txt");
 	}
 
 	@Override
