@@ -3,14 +3,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Random;
 
-public class LiaisonDeDonnees
+public class LiaisonDeDonnees // Couche liaison de données
 {
 	private static File L_ecr = new File("L_ecr.txt");
 	private static File L_lec = new File("L_lec.txt");
 	private static boolean grosPaquet;
 	private static String grosData = "";
 
-	// Methode pour les paquet d'appels//La liason de données écrira dans L_ecr
+	// Réception des paquets d'appel. La liason de données écrira dans L_ecr
 	public static IPaquet appel(PaquetAppel paqueAppel) throws IOException
 	{
 		String ecriture = paqueAppel.toString();
@@ -20,51 +20,26 @@ public class LiaisonDeDonnees
 		return reponseDemandeDeConnexion(paqueAppel.getAddresseSource(), paqueAppel);
 	}
 
+	// Reception des demande de connexion
 	private static IPaquet reponseDemandeDeConnexion(int nbr, PaquetAppel paqueAppel)
 	{
-		int numConexion = paqueAppel.getNUMERO_CONNEXION();
+		int numConexion = paqueAppel.getNumConnexion();
 		int addrSource = paqueAppel.getAddresseSource();
 		int addrDest = paqueAppel.getAddresseDest();
 
 		if (estMultipleDe19(nbr))
 		{
-			System.out.println("multiple de 19");
 			return null;
 		}
 		if (estMultipleDe13(nbr))
 		{
-			System.out.println("multiple de 13");
 			return new PaquetIndLiberation(numConexion, addrSource, addrDest, 0b00000001);
 		}
 
 		return new PaquetComEtablie(numConexion, addrSource, addrDest);
 	}
 
-	private static boolean estMultipleDe13(int nbr)
-	{
-		// System.out.println("nbr = " + nbr);
-		if (nbr != 0)
-			return nbr % 13 == 0;
-		else
-			return false;
-	}
-
-	private static boolean estMultipleDe15(int nbr)
-	{
-		if (nbr != 0)
-			return nbr % 15 == 0;
-		else
-			return false;
-	}
-
-	private static boolean estMultipleDe19(int nbr)
-	{
-		if (nbr != 0)
-			return nbr % 19 == 0;
-		else
-			return false;
-	}
-
+	// Réception des paquets de données
 	public static PaquetAcquittement envoisPaquetDeDonnees(PaquetDeDonnees paquetDeDonnees, int addrSource)
 			throws IOException
 	{
@@ -94,9 +69,7 @@ public class LiaisonDeDonnees
 
 			return acquittement(paquetDeDonnees, addrSource);
 		}
-
 		return null;
-
 	}
 
 	// Acquittement des paquets de donnees
@@ -120,6 +93,12 @@ public class LiaisonDeDonnees
 
 	}
 
+	// Réception de demandes de libération
+	public static void envoisPaquetLiberation(IPaquet paquetLib) throws IOException
+	{
+		ecrireDansFichiers(L_ecr, paquetLib.toString());
+	}
+
 	// Ecriture dans le fichier L_ecr
 	private static void ecrireDansFichiers(File file, String ecriture) throws IOException
 	{
@@ -127,12 +106,30 @@ public class LiaisonDeDonnees
 		fos = new FileOutputStream(file, true);
 		fos.write(ecriture.concat("\n").getBytes());
 		fos.close();
-
 	}
 
-	public static void envoisPaquetLiberation(IPaquet paquetLib) throws IOException
+	private static boolean estMultipleDe13(int nbr)
 	{
-		ecrireDansFichiers(L_ecr, paquetLib.toString());
+		if (nbr != 0)
+			return nbr % 13 == 0;
+		else
+			return false;
+	}
+
+	private static boolean estMultipleDe15(int nbr)
+	{
+		if (nbr != 0)
+			return nbr % 15 == 0;
+		else
+			return false;
+	}
+
+	private static boolean estMultipleDe19(int nbr)
+	{
+		if (nbr != 0)
+			return nbr % 19 == 0;
+		else
+			return false;
 	}
 
 }

@@ -1,9 +1,8 @@
 import java.io.File;
 import java.io.IOException;
 
-public class MainClass
+public class MainClass // Démarrage du programme
 {
-
 	public static void main(String[] args) throws IOException, InterruptedException
 	{
 		File L_lec = new File("L_lec.txt");
@@ -16,22 +15,12 @@ public class MainClass
 		L_ecr.createNewFile();
 		S_ecr.delete();
 		S_ecr.createNewFile();
-		String data = "1";
-		// System.out.println(Integer.parseInt(data.substring(0, 3)));
-		int i = 0;
 
-		// while (i < 30)
-		{
-			Session session = new Session();
-			session.start();
+		// Démarrage de la communication
+		Session session = new Session();
+		session.start();
 
-			System.out.println(i);
-
-		}
-//		String ps = String.format("%3s", Integer.toBinaryString(3)).replace(' ', '0');
-//		String g = String.format("%3s", data).replace(' ', '0');
-//		System.out.println("test = " + g);
-
+		System.out.println("Fin des communications");
 	}
 
 }

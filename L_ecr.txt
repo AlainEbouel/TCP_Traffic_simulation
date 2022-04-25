@@ -1,31 +1,62 @@
-PaquetAppel [NUMERO_CONNEXION=0, typeDePaquet=11, addresseSource=6, addresseDest=66, primitive=N_CONNECT_req]
+PaquetAppel [NUMERO_CONNEXION=0, typeDePaquet=00001011, addresseSource=126, addresseDest=66, primitive=N_CONNECT_req]
+
 Bonjour les amis.
-PaquetAppel [NUMERO_CONNEXION=1, typeDePaquet=11, addresseSource=161, addresseDest=66, primitive=N_CONNECT_req]
+
+PaquetAppel [NUMERO_CONNEXION=1, typeDePaquet=00001011, addresseSource=145, addresseDest=66, primitive=N_CONNECT_req]
+
 « Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. 
+
 bonjour les amis
-PaquetAppel [NUMERO_CONNEXION=2, typeDePaquet=11, addresseSource=230, addresseDest=66, primitive=N_CONNECT_req]
+
+PaquetAppel [NUMERO_CONNEXION=2, typeDePaquet=00001011, addresseSource=181, addresseDest=66, primitive=N_CONNECT_req]
+
 L’utilisateur distant B, ou le fournisseur, peuvent refuser d’établir la connexion (manque de ressources, mauvais fonction
+
 ement local, ou autre raison). Les figures 2 et 3illustrent un refus d’établissement de connexion de la part de l’utilisat
+
 ur, respectivementdu fournisseur.
+
 Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
+
 Le transfert de données est un service non confirmé.
+
 Est-ce que tout le monde se porte bien?
+
 La libération de connexion est un service non confirmé.
+
 Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonumm
+
  molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat
+
 Je viendrais vous voir bientôt si je trouve un peu de temps. 
+
 Il y a donc deux primitives associées à ce service. La libération peut intervenir sur demande de l’un des deux utilisateur
+
  du service de réseau (Figure 5), ou bien sur demande du fournisseur de service (Figure 6).
+
 Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar
+
 Les actions décrites dans les paragraphes suivants sont celles mises en œuvre par les entités de la couche réseau côté ap
+
 elant.
+
 Comme vous le savez je suis très sollicité en ce moment, mais je ferai de mon mieux pour touver un peu de temps.
+
  Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libe
+
 o pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede.
+
 J'ai contacté nos amis et ils seront du voyage.
-******PAQUET DE DEMANDE DE LIB?RATION*****==>[NUMERO_CONNEXION=0, typeDePaquet=19, addresseSource=6, addresseDest=66, primitive=N_DISCONNECT_ind]
+
+******PAQUET DE DEMANDE DE LIBERATION*****==>[NUMERO_CONNEXION=0, typeDePaquet=00010011, addresseSource=126, addresseDest=66, primitive=N_DISCONNECT_ind]
+
 Si le paquet d’acquittement n’arrive pas (expiration d’un temporisateur) ou si c’est un paquet d’acquittement négati
+
 , réémettre le paquetconcerné.
-******PAQUET DE DEMANDE DE LIB?RATION*****==>[NUMERO_CONNEXION=2, typeDePaquet=19, addresseSource=230, addresseDest=66, primitive=N_DISCONNECT_ind]
+
+******PAQUET DE DEMANDE DE LIBERATION*****==>[NUMERO_CONNEXION=2, typeDePaquet=00010011, addresseSource=181, addresseDest=66, primitive=N_DISCONNECT_ind]
+
 Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit.
-******PAQUET DE DEMANDE DE LIB?RATION*****==>[NUMERO_CONNEXION=1, typeDePaquet=19, addresseSource=161, addresseDest=66, primitive=N_DISCONNECT_ind]
+
+******PAQUET DE DEMANDE DE LIBERATION*****==>[NUMERO_CONNEXION=1, typeDePaquet=00010011, addresseSource=145, addresseDest=66, primitive=N_DISCONNECT_ind]
+

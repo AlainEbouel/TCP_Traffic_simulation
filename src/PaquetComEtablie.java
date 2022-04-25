@@ -22,12 +22,18 @@ public class PaquetComEtablie implements IPaquet
 		return primitive;
 	}
 
+	// Obtention de la chaine binaire du type de paquet
+	private String typePaquetBinaryDigits()
+	{
+		return String.format("%8s", Integer.toBinaryString(typeDePaquet)).replace(' ', '0');
+	}
+
 	@Override
 	public String toString()
 	{
-		return "Paquet de Communication établie [NUMERO_CONNEXION=" + NUMERO_CONNEXION + ", typeDePaquet="
-				+ typeDePaquet + ", addresseSource=" + addresseSource + ", addresseDest=" + addresseDest
-				+ ", primitive=" + primitive + "]";
+		return "Paquet de Communication etablie [NUMERO_CONNEXION=" + NUMERO_CONNEXION + ", typeDePaquet="
+				+ typePaquetBinaryDigits() + ", addresseSource=" + addresseSource + ", addresseDest="
+				+ addresseDest + ", primitive=" + primitive + "]";
 	}
 
 }

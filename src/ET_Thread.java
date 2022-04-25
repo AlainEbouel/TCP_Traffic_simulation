@@ -5,7 +5,6 @@ import java.util.Random;
 
 public class ET_Thread extends Thread // Threadind des opérations de la couche transport ET
 {
-	// private ProcessusET ET;
 	private ProcessusER ER;
 	private String data;
 	private File S_ecr;
@@ -25,12 +24,17 @@ public class ET_Thread extends Thread // Threadind des opérations de la couche t
 		IPaquet reponse = null;
 		int addrSource = generationAddrSource();
 		PaquetAcquittement resultEnvois;
+		EtatDeConnexion etatConnexion = ProcessusET.getEntreeDeTable(idConnexion).getEtatDeConnexion();
 
-		if (ProcessusET.getEntreeDeTable(idConnexion).getEtatDeConnexion() == EtatDeConnexion.attenteDeConfirmation)
+		// Si la connexion n'est pas encore établie, tentative d'établissement de
+		// connnexion
+		if (etatConnexion == EtatDeConnexion.attenteDeConfirmation)
 		{
 			try
 			{
+				// Demande de connexion
 				reponse = ER.DemandeDeConnexion(idConnexion, addrSource, 'B');
+
 				// ecriture dans S_ecr du resultat de la demande de connexion
 				if (reponse != null)
 					ecrireDansS_ecr(reponse.toString());
@@ -40,9 +44,11 @@ public class ET_Thread extends Thread // Threadind des opérations de la couche t
 				e1.printStackTrace();
 			}
 
+			// En cas de refus de connexion
 			if (reponse != null && reponse.getPrimitive() == Primitive.N_DISCONNECT_ind)
 				liberationDesRessources(idConnexion);
 
+			// En cas de connexion acceptée
 			else if (reponse != null && reponse.getPrimitive() == Primitive.N_CONNECT_resp)
 			{
 				ProcessusET.getEntreeDeTable(idConnexion).setEtatDeConnexion(EtatDeConnexion.connexionEtablie);
@@ -59,6 +65,7 @@ public class ET_Thread extends Thread // Threadind des opérations de la couche t
 			}
 		}
 
+		// Si la connexion est établie on directement tranferts des données
 		else
 		{
 			try
@@ -100,7 +107,5 @@ public class ET_Thread extends Thread // Threadind des opérations de la couche t
 		file.write(reponse.concat("\n").getBytes());
 		file.close();
 	}
-
-	// Retroune une entree de table en fonction du numero de connexion
 
 }

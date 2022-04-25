@@ -1,24 +1,30 @@
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ProcessusET
+public class ProcessusET // Couche Transport
 {
 	private static ArrayList<EntreeDeTable> table = new ArrayList<>();
 	private static int ps = -1, pr = -1;
-	private static int countIndentifiant = 0;
+	private static int countIndentifiant = 0; // Compteur utilisé pour générer des Identifiants d'extrémité de
+								// connexion
 
+	// Traitement de chaque transaction(Chaque ligne dans le fichier S_lec)
 	public void traitement(ProcessusER ER, String data) throws IOException
 	{
 		EntreeDeTable entree;
-		int idApplication;
-		int idConnexion;
+		int idApplication;// Définie dans le fichier S_lec pour chaque application
+		int idConnexion;// Identifiant d'extrémité de connexion
 
+		// Si l'id de l'application correspond à une entrée dans la table
 		if ((entree = getEntreeDeTable(data.substring(0, 4))) != null)
 		{
 			idApplication = entree.getNumApplication();
 			idConnexion = entree.getIdConnexion();
 
-		} else
+		}
+
+		// Si l'id de l'application ne correspond à aucune entrée dans la table
+		else
 		{
 			idApplication = Integer.parseInt(data.substring(0, 4));
 			idConnexion = countIndentifiant++;
@@ -27,15 +33,16 @@ public class ProcessusET
 					idApplication));
 		}
 
-		ET_Thread Et_thread;
+		ET_Thread Et_thread; // Thread responsable de la suite du processus de communication
 
+		// Test si l'application tente de communiquer ou de mettre fin à la
+		// communication
 		if (data.charAt(4) == '0')
 		{
 			Et_thread = new ET_Thread(ER, data.substring(5), idConnexion);
 			Et_thread.run();
 		} else
 			ER.liberation(idConnexion, Primitive.N_DISCONNECT_req);
-
 	}
 
 	public static String getPs()
@@ -62,6 +69,8 @@ public class ProcessusET
 		return table;
 	}
 
+	// Retrouver une entrée dans la table grâce au numéro d'identifiant d'extrémité
+	// de connexion
 	public static EntreeDeTable getEntreeDeTable(int numConnexion)
 	{
 		for (EntreeDeTable entree : ProcessusET.getTable())
@@ -70,17 +79,14 @@ public class ProcessusET
 		return null;
 	}
 
+	// Retrouver une entrée dans la table grâce au numéro d'identifiant d'une
+	// application
 	public static EntreeDeTable getEntreeDeTable(String idApplication)
 	{
 		for (EntreeDeTable entree : ProcessusET.getTable())
 			if (entree.getNumApplication() == Integer.parseInt(idApplication))
 				return entree;
 		return null;
-	}
-
-	public void liberation()
-	{
-
 	}
 
 }

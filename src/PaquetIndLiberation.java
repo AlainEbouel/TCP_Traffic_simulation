@@ -10,7 +10,6 @@ public class PaquetIndLiberation implements IPaquet
 
 	public PaquetIndLiberation(int nUMERO_CONNEXION, int addresseSource, int addresseDest, int raison)
 	{
-		super();
 		NUMERO_CONNEXION = nUMERO_CONNEXION;
 		this.typeDePaquet = 0b00010011;
 		this.addresseSource = addresseSource;
@@ -20,18 +19,22 @@ public class PaquetIndLiberation implements IPaquet
 	}
 
 	@Override
-	public String toString()
+	public Primitive getPrimitive()
 	{
-		return "Paquet d'indication de liberation :[NUMERO_CONNEXION=" + NUMERO_CONNEXION + ", typeDePaquet="
-				+ typeDePaquet + ", addresseSource=" + addresseSource + ", addresseDest=" + addresseDest
-				+ ", Raison : " + raison + "]";
+		return primitive;
+	}
+
+	private String typePaquetBinaryDigits()
+	{
+		return String.format("%8s", Integer.toBinaryString(typeDePaquet)).replace(' ', '0');
 	}
 
 	@Override
-	public Primitive getPrimitive()
+	public String toString()
 	{
-
-		return primitive;
+		return "Paquet d'indication de liberation :[NUMERO_CONNEXION=" + NUMERO_CONNEXION + ", typeDePaquet="
+				+ typePaquetBinaryDigits() + ", addresseSource=" + addresseSource + ", addresseDest="
+				+ addresseDest + ", Raison : " + raison + "]";
 	}
 
 }

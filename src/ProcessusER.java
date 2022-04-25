@@ -1,7 +1,7 @@
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ProcessusER
+public class ProcessusER // Couche Reseau
 {
 	private ArrayList<SauvegardeInfos> sauvegardeInfos;
 	private static int count = 0;// génères les numéros de connexions
@@ -11,6 +11,7 @@ public class ProcessusER
 		sauvegardeInfos = new ArrayList<SauvegardeInfos>();
 	}
 
+	// Demande de connexion
 	public IPaquet DemandeDeConnexion(int numIdentifiant, int addrSource, int addrDestination) throws IOException
 	{
 		int numConnexion;
@@ -38,18 +39,7 @@ public class ProcessusER
 		return new PaquetAppel(numeroConnexion, addrSource, addrDestination);
 	}
 
-//	public Primitive N_ConnectInd(int addrSource, int addrDestination)
-//	{
-//		return null;
-//	}
-
-	boolean estMultipleDe27(int numeroDemande)
-	{
-
-		/// **********À coder*******************
-		return false;
-	}
-
+	// Preparation de paquets de données
 	public PaquetAcquittement preparationPaquetDeDonnees(String data, Primitive nDataReq, int numConnexion,
 			int addrSource) throws IOException
 	{
@@ -92,13 +82,7 @@ public class ProcessusER
 		return null;
 	}
 
-	private String formatTypeDePaquet(int bitM)
-	{
-		String ps = ProcessusET.getPs();
-		String pr = ProcessusET.getPr();
-		return pr + bitM + ps + 0;
-	}
-
+	// Demande de Libération de connexion
 	public void liberation(int idConnexion, Primitive nDisconnectReq) throws IOException
 	{
 		int addrSource = getAddrSource(idConnexion);
@@ -106,9 +90,25 @@ public class ProcessusER
 		int numConnexion = getNumConnexion(idConnexion);
 		PaquetDemandeLib paquetLib = new PaquetDemandeLib(numConnexion, addrSource, addrDest);
 		LiaisonDeDonnees.envoisPaquetLiberation(paquetLib);
-
 	}
 
+	// Formatage du champ type de paquet
+	private String formatTypeDePaquet(int bitM)
+	{
+		String ps = ProcessusET.getPs();
+		String pr = ProcessusET.getPr();
+		return pr + bitM + ps + 0;
+	}
+
+	private boolean estMultipleDe27(int numeroDemande)
+	{
+		if (numeroDemande != 0)
+			return numeroDemande % 15 == 0;
+		else
+			return false;
+	}
+
+	// Accesseur de numéro d'indentifiant d'extrémité de connexion
 	private int getNumConnexion(int idConnexion)
 	{
 		for (SauvegardeInfos save : sauvegardeInfos)
@@ -117,19 +117,21 @@ public class ProcessusER
 		return -1;
 	}
 
-	private int getAdrrDest(int idConnexion)
-	{
-		for (SauvegardeInfos save : sauvegardeInfos)
-			if (save.getNumeroDemande() == idConnexion)
-				return save.getAddrDestination();
-		return -1;
-	}
-
+	// Accesseur d'addresse source
 	private int getAddrSource(int idConnexion)
 	{
 		for (SauvegardeInfos save : sauvegardeInfos)
 			if (save.getNumeroDemande() == idConnexion)
 				return save.getAddrSource();
+		return -1;
+	}
+
+	// Accesseur d'addresse destination
+	private int getAdrrDest(int idConnexion)
+	{
+		for (SauvegardeInfos save : sauvegardeInfos)
+			if (save.getNumeroDemande() == idConnexion)
+				return save.getAddrDestination();
 		return -1;
 	}
 

@@ -26,17 +26,12 @@ public class PaquetDeDonnees implements IPaquet
 
 	public String getDonnees()
 	{
-		return donnees;
+		return donnees + "\n";
 	}
 
 	public void setData(String grosData)
 	{
 		donnees = new String(grosData);
-	}
-
-	public int getPr()
-	{
-		return Integer.parseInt(typeDePaquet.substring(0, 3));
 	}
 
 	@Override

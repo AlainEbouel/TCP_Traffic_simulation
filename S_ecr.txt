@@ -1,3 +1,3 @@
-Paquet de Communication ?tablie [NUMERO_CONNEXION=0, typeDePaquet=15, addresseSource=6, addresseDest=66, primitive=N_CONNECT_resp]
-Paquet de Communication ?tablie [NUMERO_CONNEXION=1, typeDePaquet=15, addresseSource=161, addresseDest=66, primitive=N_CONNECT_resp]
-Paquet de Communication ?tablie [NUMERO_CONNEXION=2, typeDePaquet=15, addresseSource=230, addresseDest=66, primitive=N_CONNECT_resp]
+Paquet de Communication etablie [NUMERO_CONNEXION=0, typeDePaquet=00001111, addresseSource=126, addresseDest=66, primitive=N_CONNECT_resp]
+Paquet de Communication etablie [NUMERO_CONNEXION=1, typeDePaquet=00001111, addresseSource=145, addresseDest=66, primitive=N_CONNECT_resp]
+Paquet de Communication etablie [NUMERO_CONNEXION=2, typeDePaquet=00001111, addresseSource=181, addresseDest=66, primitive=N_CONNECT_resp]

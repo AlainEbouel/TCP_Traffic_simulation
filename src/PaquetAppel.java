@@ -1,7 +1,6 @@
 
 public class PaquetAppel implements IPaquet
 {
-
 	private final int NUMERO_CONNEXION;
 	private final int typeDePaquet;
 	private int addresseSource;
@@ -17,7 +16,7 @@ public class PaquetAppel implements IPaquet
 		this.primitive = Primitive.N_CONNECT_req;
 	}
 
-	public int getNUMERO_CONNEXION()
+	public int getNumConnexion()
 	{
 		return NUMERO_CONNEXION;
 	}
@@ -37,6 +36,12 @@ public class PaquetAppel implements IPaquet
 		return addresseDest;
 	}
 
+	// Obtention de la chaine binaire du type de paquet
+	private String typePaquetBinaryDigits()
+	{
+		return String.format("%8s", Integer.toBinaryString(typeDePaquet)).replace(' ', '0');
+	}
+
 	@Override
 	public Primitive getPrimitive()
 	{
@@ -44,12 +49,11 @@ public class PaquetAppel implements IPaquet
 	}
 
 	@Override
-
 	public String toString()
 	{
-		return "PaquetAppel [NUMERO_CONNEXION=" + NUMERO_CONNEXION + ", typeDePaquet=" + typeDePaquet
+		return "PaquetAppel [NUMERO_CONNEXION=" + NUMERO_CONNEXION + ", typeDePaquet=" + typePaquetBinaryDigits()
 				+ ", addresseSource=" + addresseSource + ", addresseDest=" + addresseDest + ", primitive="
-				+ primitive + "]";
+				+ primitive + "]\n";
 	}
 
 }

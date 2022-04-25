@@ -23,12 +23,17 @@ public class PaquetDemandeLib implements IPaquet
 		return primitive;
 	}
 
+	private String typePaquetBinaryDigits()
+	{
+		return String.format("%8s", Integer.toBinaryString(typeDePaquet)).replace(' ', '0');
+	}
+
 	@Override
 	public String toString()
 	{
-		return "******PAQUET DE DEMANDE DE LIBÉRATION*****==>[NUMERO_CONNEXION=" + NUMERO_CONNEXION
-				+ ", typeDePaquet=" + typeDePaquet + ", addresseSource=" + addresseSource + ", addresseDest="
-				+ addresseDest + ", primitive=" + primitive + "]";
+		return "******PAQUET DE DEMANDE DE LIBERATION*****==>[NUMERO_CONNEXION=" + NUMERO_CONNEXION
+				+ ", typeDePaquet=" + typePaquetBinaryDigits() + ", addresseSource=" + addresseSource
+				+ ", addresseDest=" + addresseDest + ", primitive=" + primitive + "]\n";
 	}
 
 }

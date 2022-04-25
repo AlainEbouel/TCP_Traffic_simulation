@@ -1,5 +1,5 @@
 
-public class SauvegardeInfos
+public class SauvegardeInfos // Sauvergarde des infos de connexion
 {
 	private int numeroDemande, addrSource, addrDestination, numeroConnexion;
 	private EtatDeConnexion etatConnexion;
@@ -12,7 +12,6 @@ public class SauvegardeInfos
 		this.addrDestination = addrDestination;
 		this.numeroConnexion = numeroConnexion;
 		this.etatConnexion = etatConnexion;
-
 	}
 
 	public EtatDeConnexion getEtatConnexion()
