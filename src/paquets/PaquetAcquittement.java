@@ -1,3 +1,4 @@
+package paquets;
 
 public class PaquetAcquittement
 {

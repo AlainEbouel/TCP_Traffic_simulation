@@ -1,3 +1,5 @@
+package services;
+import enumurations.EtatDeConnexion;
 
 public class SauvegardeInfos // Sauvergarde des infos de connexion
 {

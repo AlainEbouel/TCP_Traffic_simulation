@@ -1,3 +1,5 @@
+package services;
+import enumurations.EtatDeConnexion;
 
 public class EntreeDeTable // Représentation des entrées de la table utilisée par la couche transport ET
 {

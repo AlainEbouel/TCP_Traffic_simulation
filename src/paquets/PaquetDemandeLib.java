@@ -1,20 +1,22 @@
+package paquets;
+import enumurations.Primitive;
+import interfaces.IPaquet;
 
-public class PaquetIndLiberation implements IPaquet
+public class PaquetDemandeLib implements IPaquet
 {
+
 	private final int NUMERO_CONNEXION;
 	private final int typeDePaquet;
 	private int addresseSource;
 	private int addresseDest;
-	private int raison;
 	private Primitive primitive;
 
-	public PaquetIndLiberation(int nUMERO_CONNEXION, int addresseSource, int addresseDest, int raison)
+	public PaquetDemandeLib(int numeroDeConnexion, int addresseSource, int addresseDest)
 	{
-		NUMERO_CONNEXION = nUMERO_CONNEXION;
+		this.NUMERO_CONNEXION = numeroDeConnexion;
 		this.typeDePaquet = 0b00010011;
 		this.addresseSource = addresseSource;
 		this.addresseDest = addresseDest;
-		this.raison = raison;
 		this.primitive = Primitive.N_DISCONNECT_ind;
 	}
 
@@ -32,9 +34,9 @@ public class PaquetIndLiberation implements IPaquet
 	@Override
 	public String toString()
 	{
-		return "Paquet d'indication de liberation :[NUMERO_CONNEXION=" + NUMERO_CONNEXION + ", typeDePaquet="
-				+ typePaquetBinaryDigits() + ", addresseSource=" + addresseSource + ", addresseDest="
-				+ addresseDest + ", Raison : " + raison + "]";
+		return "******PAQUET DE DEMANDE DE LIBERATION*****==>[NUMERO_CONNEXION=" + NUMERO_CONNEXION
+				+ ", typeDePaquet=" + typePaquetBinaryDigits() + ", addresseSource=" + addresseSource
+				+ ", addresseDest=" + addresseDest + ", primitive=" + primitive + "]\n";
 	}
 
 }

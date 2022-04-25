@@ -1,3 +1,4 @@
+package enumurations;
 
 public enum EtatDeConnexion
 {

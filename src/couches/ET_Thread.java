@@ -1,7 +1,14 @@
+package couches;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Random;
+
+import enumurations.EtatDeConnexion;
+import enumurations.Primitive;
+import interfaces.IPaquet;
+import paquets.PaquetAcquittement;
+import services.EntreeDeTable;
 
 public class ET_Thread extends Thread // Threadind des opérations de la couche transport ET
 {

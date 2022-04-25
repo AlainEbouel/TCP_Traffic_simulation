@@ -1,5 +1,16 @@
+package couches;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import enumurations.EtatDeConnexion;
+import enumurations.Primitive;
+import interfaces.IPaquet;
+import paquets.PaquetAcquittement;
+import paquets.PaquetAppel;
+import paquets.PaquetDeDonnees;
+import paquets.PaquetDemandeLib;
+import paquets.PaquetIndLiberation;
+import services.SauvegardeInfos;
 
 public class ProcessusER // Couche Reseau
 {

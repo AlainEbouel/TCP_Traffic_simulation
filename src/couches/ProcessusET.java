@@ -1,5 +1,10 @@
+package couches;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import enumurations.EtatDeConnexion;
+import enumurations.Primitive;
+import services.EntreeDeTable;
 
 public class ProcessusET // Couche Transport
 {

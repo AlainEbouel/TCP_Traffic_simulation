@@ -1,3 +1,6 @@
+package paquets;
+import enumurations.Primitive;
+import interfaces.IPaquet;
 
 public class PaquetAppel implements IPaquet
 {

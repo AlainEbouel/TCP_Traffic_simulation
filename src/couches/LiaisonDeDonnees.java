@@ -1,7 +1,15 @@
+package couches;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Random;
+
+import interfaces.IPaquet;
+import paquets.PaquetAcquittement;
+import paquets.PaquetAppel;
+import paquets.PaquetComEtablie;
+import paquets.PaquetDeDonnees;
+import paquets.PaquetIndLiberation;
 
 public class LiaisonDeDonnees // Couche liaison de données
 {
