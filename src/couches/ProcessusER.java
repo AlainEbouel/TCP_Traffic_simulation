@@ -74,14 +74,6 @@ public class ProcessusER // Couche Reseau
 
 	}
 
-	private void fenetreAnticipation(PaquetAcquittement resultEnvois, PaquetDeDonnees paquetDonnees, int addrSource)
-			throws IOException
-	{
-		if (resultEnvois == null || resultEnvois.getTypeDePaquet().substring(3) == "01001")
-			LiaisonDeDonnees.retransmissionDonnées(paquetDonnees, addrSource);
-
-	}
-
 	// Traitement des grosses données(>128o)
 	private PaquetAcquittement traitementGrosPaquet(int numConnexion, String data, int addrSource) throws IOException
 	{
@@ -115,6 +107,14 @@ public class ProcessusER // Couche Reseau
 		int numConnexion = getNumConnexion(idConnexion);
 		PaquetDemandeLib paquetLib = new PaquetDemandeLib(numConnexion, addrSource, addrDest);
 		LiaisonDeDonnees.envoisPaquetLiberation(paquetLib);
+	}
+
+	// Fenetre d'anticipation pour la gestion des acquittements
+	private void fenetreAnticipation(PaquetAcquittement resultEnvois, PaquetDeDonnees paquetDonnees, int addrSource)
+			throws IOException
+	{
+		if (resultEnvois == null || resultEnvois.getTypeDePaquet().substring(3) == "01001")
+			LiaisonDeDonnees.retransmissionDonnées(paquetDonnees, addrSource);
 	}
 
 	// Formatage du champ type de paquet
